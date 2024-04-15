@@ -6,11 +6,6 @@ import glob
 from shutil import copy2, rmtree
 
 
-def get_name(name_parts):
-
-    return ""
-
-
 if __name__ == "__main__":
     cwd = pathlib.Path.cwd()
     temp_path = cwd / "tmp"
