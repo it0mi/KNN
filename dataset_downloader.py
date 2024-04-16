@@ -21,11 +21,9 @@ if __name__ == "__main__":
     face_dir = temp_path / "data" / "faces"
     classed_faces_dir = cwd / "data"
     pathlib.Path(classed_faces_dir).mkdir(parents=True, exist_ok=True)
-    counter = 0
     for filename in glob.glob(f"{face_dir}/*.jpg"):
-        pathlib.Path(classed_faces_dir / str(counter)).mkdir(parents=True, exist_ok=True)
-        copy2(filename, classed_faces_dir / str(counter))
-        counter += 1
+        if not (classed_faces_dir / pathlib.Path(filename).parts[-1]).exists():
+            copy2(filename, classed_faces_dir)
 
-    if sys.argv[1] == "-c" or sys.argv[1] == "--clean":
+    if "-c" in sys.argv or "--clean" in sys.argv:
         rmtree(temp_path)
